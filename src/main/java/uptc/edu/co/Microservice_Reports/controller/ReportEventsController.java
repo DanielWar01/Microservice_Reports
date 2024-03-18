@@ -32,11 +32,10 @@ public class ReportEventsController {
 	@Autowired
 	private ReporteVentasServiceAPI reporteVentasServiceAPI;
 
-	@GetMapping(path = "/ventas/download")
+	@GetMapping(path = "/events/download")
 	public ResponseEntity<Resource> download(@RequestParam Map<String, Object> params)
 			throws JRException, IOException, SQLException {
 
-		System.out.println(params);
 		params.put("fecha_inicio", convertirATimestamp(params.get("fecha_inicio").toString()));
 		params.put("fecha_fin", convertirATimestamp(params.get("fecha_fin").toString()));
 		ReportEventsDTO dto = reporteVentasServiceAPI.obtenerReporteVentas(params);
